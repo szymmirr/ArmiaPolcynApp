@@ -1,0 +1,80 @@
+<phone:PhoneApplicationPage
+    x:Class="AppStudio.FacebookDetail"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:appBar="clr-namespace:Cimbalino.Phone.Toolkit.Behaviors;assembly=Cimbalino.Phone.Toolkit"
+    xmlns:interactive="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    Foreground="{StaticResource AppForegroundColor}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="False"
+    mc:Ignorable="d">
+
+    <toolkit:TransitionService.NavigationInTransition>
+      <toolkit:NavigationInTransition>
+        <toolkit:NavigationInTransition.Backward>
+          <toolkit:TurnstileTransition Mode="BackwardIn"/>
+        </toolkit:NavigationInTransition.Backward>
+        <toolkit:NavigationInTransition.Forward>
+          <toolkit:TurnstileTransition Mode="ForwardIn"/>
+        </toolkit:NavigationInTransition.Forward>
+      </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+      <toolkit:NavigationOutTransition>
+        <toolkit:NavigationOutTransition.Backward>
+          <toolkit:TurnstileTransition Mode="BackwardOut"/>
+        </toolkit:NavigationOutTransition.Backward>
+        <toolkit:NavigationOutTransition.Forward>
+          <toolkit:TurnstileTransition Mode="ForwardOut"/>
+        </toolkit:NavigationOutTransition.Forward>
+      </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+  <Grid x:Name="LayoutRoot" Background="{StaticResource AppBackgroundColor}">
+        <phone:Pivot Name="Container" Grid.Row="0" Foreground="{StaticResource AppForegroundColor}" Background="{StaticResource AppBackground}" SelectionChanged="OnSelectionChanged" toolkit:TiltEffect.IsTiltEnabled="True"
+                    TitleTemplate="{StaticResource AppPivotTitle}"
+                    HeaderTemplate="{StaticResource Facebook1DetailHeader}"
+                    ItemTemplate="{StaticResource Facebook1DetailLayout}"
+                    ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+            
+        </phone:Pivot>
+        <!-- AppBar Binding -->
+        <interactive:Interaction.Behaviors>
+            <appBar:ApplicationBarBehavior x:Name="appBar" IsVisible="{Binding IsAppBarVisible}" BackgroundColor="{StaticResource AppBarBackgroundColor}" ForegroundColor="White" Mode="Minimized">
+                
+                <appBar:ApplicationBarIconButton Text="{Binding LocalizedResources.SpeakText, Source={StaticResource LocalizedStrings}}"
+                                                 Command="{Binding SpeakTextCommand}"
+                                                 IsVisible="{Binding IsSpeakTextVisible}"
+                                                 IconUri="Assets/Icons/Dark/TextToSpeech.png" />
+
+                <appBar:ApplicationBarIconButton Text="{Binding LocalizedResources.PinToStart, Source={StaticResource LocalizedStrings}}"
+                                                 Command="{Binding PinToStartCommand}"
+                                                 IsVisible="{Binding IsPinToStartVisible}"
+                                                 IconUri="Assets/Icons/Dark/PinToStart.png" />
+
+                <appBar:ApplicationBarIconButton Text="{Binding LocalizedResources.Refresh, Source={StaticResource LocalizedStrings}}"
+                                                 Command="{Binding RefreshCommand}"
+                                                 IsVisible="{Binding IsRefreshVisible}"
+                                                 IconUri="Assets/Icons/Dark/Refresh.png" />
+                
+                <appBar:ApplicationBarIconButton Text="{Binding LocalizedResources.GoToSource, Source={StaticResource LocalizedStrings}}"
+                                                 Command="{Binding GoToSourceCommand}"
+                                                 IsVisible="{Binding IsGoToSourceVisible}"
+                                                 IconUri="Assets/Icons/Dark/GoToSource.png" />
+                
+                <appBar:ApplicationBarBehavior.MenuItems>
+                    <appBar:ApplicationBarMenuItem Text="{Binding LocalizedResources.ShareItem, Source={StaticResource LocalizedStrings}}"
+                                                 Command="{Binding ShareItemCommand}"
+                                                 IsVisible="{Binding IsShareItemVisible}" />
+                </appBar:ApplicationBarBehavior.MenuItems>
+                
+            </appBar:ApplicationBarBehavior>
+        </interactive:Interaction.Behaviors>
+    </Grid>
+
+</phone:PhoneApplicationPage>

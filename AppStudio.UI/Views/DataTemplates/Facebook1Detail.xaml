@@ -1,0 +1,28 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:AppStudio.Controls;assembly=AppStudio"
+    xmlns:mytoolkit="clr-namespace:MyToolkit.Controls;assembly=MyToolkit.Extended"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone">
+
+    <DataTemplate x:Name="Facebook1DetailHeader">
+        <StackPanel Orientation="Horizontal" Margin="0,7,0,0">
+            <TextBlock Text="{Binding Title}" FontSize="56" Foreground="{StaticResource AppForegroundColor}" Width="440" />
+        </StackPanel>
+    </DataTemplate>
+
+    <!-- InstancePhotoDescription -->
+    <DataTemplate x:Name="Facebook1DetailLayout">
+        <Grid Margin="10,5,5,5">
+            <ScrollViewer>
+                <StackPanel>
+                    <Button Style="{StaticResource ImageButtonStyle}" Command="{Binding DataContext.ImageSelectedCommand, ElementName=LayoutRoot}" CommandParameter="{Binding ImageUrl}">
+                        <Image Margin="0,10" Source="{Binding ImageUrl, Converter = {StaticResource ThumbnailConverter}, ConverterParameter = 250}" MaxHeight="250" VerticalAlignment="Top"></Image>
+                    </Button>
+                    <mytoolkit:FixedHtmlTextBlock Html="{Binding Content}" FontSize="24" Foreground="{StaticResource AppForegroundColor}"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </DataTemplate>
+
+</ResourceDictionary>
