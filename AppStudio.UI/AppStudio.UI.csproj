@@ -266,5 +266,6 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="MyBuild" DependsOnTargets="Build" />
   <ProjectExtensions />
 </Project>
