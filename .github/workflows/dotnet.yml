@@ -21,7 +21,7 @@ jobs:
       run: nuget restore App.sln
 
     - name: Build solution
-      run: msbuild App.sln /p:VisualStudioVersion=11.0 /p:Configuration=Release /p:DeployOnBuild=true
+      run: msbuild App.sln /t:Build:Rebuild /p:Configuration=Release /p:DeployOnBuild=true
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
