@@ -20,6 +20,9 @@ jobs:
     - name: Restore NuGet packages
       run: nuget restore App.sln
 
+    - name: Look at folder
+      run: ls "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\"
+
     - name: Build solution
       run: msbuild App.sln /p:Configuration=Release /p:DeployOnBuild=true
 
